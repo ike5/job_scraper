@@ -8,8 +8,8 @@ async def start():
     USERNAME = os.getenv("USERNAME")
     PASSWORD = os.getenv("PASSWORD")
     job_you_want = input("What job would you like?")
-    job_filename = "writer"
-    user_data_dir = '/Users/ike/Library/Application Support/Google/Chrome/Profile 2'
+    job_filename = "test"
+    user_data_dir = '/Users/ike/Library/Application Support/Google/Chrome'
     browser = await launch(executablePath='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
                            headless=False, userDataDir=user_data_dir)  # headless=False to see the browser
     page = await browser.newPage()
@@ -31,7 +31,7 @@ async def start():
             company_element = await job.querySelector('[data-testid="company-name"]')
             company = await (await company_element.getProperty('textContent')).jsonValue() if company_element else 'N/A'
 
-            location_element = await job.querySelector('div.companyLocation')
+            location_element = await job.querySelector('div.company_location')
             location = await (
                 await location_element.getProperty('textContent')).jsonValue() if location_element else 'N/A'
 
